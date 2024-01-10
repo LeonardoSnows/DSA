@@ -40,15 +40,13 @@ public class ToDoList {
 
     private void chosed(int escolha) {
         switch (escolha) {
-            case 1:
-                registerTask();
-                break;
-            case 2:
-                System.out.println("ola");
-                break;
-            case 3:
-                tasks.printList();
-                break;
+            case 1 -> registerTask();
+
+            case 2 -> System.out.println("ola");
+
+            case 3 -> tasks.printList();
+
+            case 4 -> removeTask();
         }
     }
 
@@ -70,4 +68,18 @@ public class ToDoList {
 
         tasks.appendTask(taskName, taskDesc, outTo);
     }
+
+    private void removeTask() {
+        Scanner sc = new Scanner(System.in);
+
+        String taskName = "";
+        tasks.printList();
+
+        System.out.println("\nIndex da task: (Começando a partir de 0)");
+        taskName = sc.nextLine();
+
+        tasks.removeTask(Integer.parseInt(taskName));
+    }
+
+    
 }

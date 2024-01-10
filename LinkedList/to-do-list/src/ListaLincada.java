@@ -23,4 +23,70 @@ public class ListaLincada {
         }
         length++;
     }
+
+    public Node removeTask(int index) {
+        if (index < 0 || index >= this.length) return null;
+
+        if (index == 0) return removeFirstTask();
+
+        if (index == length - 1) return removeUltimo();
+
+        Node prev = get(index - 1);
+        Node temp = prev.next;
+
+        prev.next = temp.next;
+        temp.next = null;
+        length--;
+
+        return prev;
+    }
+
+    public Node get(int index) {
+        if (index < 0 || index >= this.length) {
+            return null;
+        }
+
+        Node temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+
+        return temp;
+    }
+
+    private Node removeUltimo() {
+        if (length == 0) return null;
+
+        Node temp = head;
+        Node pre = head;
+
+        while (temp.next != null) {
+            pre = temp;
+            temp = temp.next;
+        }
+
+        tail = pre;
+        tail.next = null;
+        length--;
+
+        if (length == 0) {
+            head = null;
+            tail = null;
+        }
+
+        return temp;
+    }
+
+    private Node removeFirstTask() {
+        if (length == 0)
+            return null;
+        Node temp = head;
+        head = head.next;
+        temp.next = null;
+        length--;
+        if (length == 0) {
+            tail = null;
+        }
+        return temp;
+    }
 }
