@@ -42,7 +42,7 @@ public class ToDoList {
         switch (escolha) {
             case 1 -> registerTask();
 
-            case 2 -> System.out.println("ola");
+            case 2 -> modifyTask();
 
             case 3 -> tasks.printList();
 
@@ -75,11 +75,57 @@ public class ToDoList {
         String taskName = "";
         tasks.printList();
 
-        System.out.println("\nIndex da task: (Começando a partir de 0)");
+        System.out.println("\nIndex da task:(Começando a partir de 0)");
         taskName = sc.nextLine();
 
         tasks.removeTask(Integer.parseInt(taskName));
     }
 
-    
+    public void modifyTask() {
+        Scanner sc = new Scanner(System.in);
+
+        String taskIndex = "";
+        tasks.printList();
+
+        System.out.println("\nIndex da task a ser modificado:(Começando a partir de 0)");
+        taskIndex = sc.nextLine();
+
+        validaQualModificacao(Integer.parseInt(taskIndex));
+    }
+
+    private void validaQualModificacao(int taskIndex) {
+        Scanner sc = new Scanner(System.in);
+
+        String choosed = "";
+        String taskName = "";
+        String taskDesc = "";
+        String dueTo = "";
+
+        System.out.println("\nDeseja modificar o nome da task (S ou N)? Nome atual da task: " + tasks.get(taskIndex).getTaskName());
+        choosed = sc.nextLine();
+
+        if (choosed.equalsIgnoreCase("S")) {
+            System.out.println("Digite o novo nome da task: ");
+            taskName = sc.nextLine();
+            tasks.get(taskIndex).setTaskName(taskName);
+        }
+
+        System.out.println("Deseja modificar a descricao da task (S ou N)? descricao atual da task: " + tasks.get(taskIndex).getTaskDescription());
+        choosed = sc.nextLine();
+
+        if (choosed.equalsIgnoreCase("S")) {
+            System.out.println("Digite a nova descricao da task: ");
+            taskDesc = sc.nextLine();
+            tasks.get(taskIndex).setTaskDescription(taskDesc);
+        }
+
+        System.out.println("Deseja modificar a deadline da task (S ou N)? deadline atual da task: " + tasks.get(taskIndex).getDueTo());
+        choosed = sc.nextLine();
+
+        if (choosed.equalsIgnoreCase("S")) {
+            System.out.println("Digite a nova deadline da task: ");
+            dueTo = sc.nextLine();
+            tasks.get(taskIndex).setDueTo(dueTo);
+        }
+    }
 }

@@ -28,6 +28,18 @@ public class Node {
         return next;
     }
 
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    public void setTaskDescription(String taskDescription) {
+        this.taskDescription = taskDescription;
+    }
+
+    public void setDueTo(String dueTo) {
+        this.dueTo = dueTo;
+    }
+
     @Override
     public String toString() {
         return "{" +
